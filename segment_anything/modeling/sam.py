@@ -14,8 +14,10 @@ from .image_encoder import ImageEncoderViT
 from .mask_decoder import MaskDecoder
 from .prompt_encoder import PromptEncoder
 
+from huggingface_hub import PyTorchModelHubMixin
 
-class Sam(nn.Module):
+
+class Sam(nn.Module, PyTorchModelHubMixin):
     mask_threshold: float = 0.0
     image_format: str = "RGB"
 

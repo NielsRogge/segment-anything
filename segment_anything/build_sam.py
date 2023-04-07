@@ -58,6 +58,8 @@ def _build_sam(
     encoder_num_heads,
     encoder_global_attn_indexes,
     checkpoint=None,
+    repo_id=None,
+    **kwargs,
 ):
     prompt_embed_dim = 256
     image_size = 1024
@@ -104,4 +106,6 @@ def _build_sam(
         with open(checkpoint, "rb") as f:
             state_dict = torch.load(f)
         sam.load_state_dict(state_dict)
+    if repo_id is not None:
+        sam.from_pretrained(repo_id, **kwargs)
     return sam

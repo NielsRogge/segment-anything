@@ -44,7 +44,10 @@ First download a [model checkpoint](#model-checkpoints). Then the model can be u
 
 ```
 from segment_anything import build_sam, SamPredictor 
+# load from local checkpoint
 predictor = SamPredictor(build_sam(checkpoint="</path/to/model.pth>"))
+# or load directly from the Hugging Face hub
+predictor = SamPredictor(build_sam(repo_id="facebook/segment-anything-vit-huge"))
 predictor.set_image(<your_image>)
 masks, _, _ = predictor.predict(<input_prompts>)
 ```
